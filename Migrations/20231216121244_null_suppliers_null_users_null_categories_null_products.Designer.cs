@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bar_Management_System.Migrations
 {
     [DbContext(typeof(BMSContext))]
-    partial class BMSContextModelSnapshot : ModelSnapshot
+    [Migration("20231216121244_null_suppliers_null_users_null_categories_null_products")]
+    partial class null_suppliers_null_users_null_categories_null_products
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,6 +60,55 @@ namespace Bar_Management_System.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("Invoice");
+                });
+
+            modelBuilder.Entity("Bar_Management_System.Model.InvoiceManagement.SubUnitInvoce", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Empty")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InvoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NotRecived")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Qnt")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalPurchasePrice")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalSellPrice")
+                        .HasColumnType("float");
+
+                    b.Property<double>("VAT")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("SubUnitInvoce");
                 });
 
             modelBuilder.Entity("Bar_Management_System.Model.ProductManagement.Category", b =>
@@ -272,6 +324,29 @@ namespace Bar_Management_System.Migrations
                     b.Navigation("Supplier");
                 });
 
+            modelBuilder.Entity("Bar_Management_System.Model.InvoiceManagement.SubUnitInvoce", b =>
+                {
+                    b.HasOne("Data.Model.BranchManagement.Branch", "Branch")
+                        .WithMany()
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bar_Management_System.Model.InvoiceManagement.Invoice", null)
+                        .WithMany("SubInvoces")
+                        .HasForeignKey("InvoiceId");
+
+                    b.HasOne("Bar_Management_System.Model.ProductManagement.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Bar_Management_System.Model.ProductManagement.Category", b =>
                 {
                     b.HasOne("Data.Model.BranchManagement.Branch", "Branch")
@@ -292,13 +367,13 @@ namespace Bar_Management_System.Migrations
                         .IsRequired();
 
                     b.HasOne("Bar_Management_System.Model.ProductManagement.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Bar_Management_System.Model.SupplierManagement.Supplier", "Supplier")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -345,6 +420,21 @@ namespace Bar_Management_System.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Bar_Management_System.Model.InvoiceManagement.Invoice", b =>
+                {
+                    b.Navigation("SubInvoces");
+                });
+
+            modelBuilder.Entity("Bar_Management_System.Model.ProductManagement.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Bar_Management_System.Model.SupplierManagement.Supplier", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
