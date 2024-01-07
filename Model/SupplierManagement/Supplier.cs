@@ -14,7 +14,6 @@ namespace Bar_Management_System.Model.SupplierManagement
         public string? CompanyRegNo { get; set; }
         public int TelNo { get; set; }
 
-        public ICollection<Product> Products { get; set; }
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
     }

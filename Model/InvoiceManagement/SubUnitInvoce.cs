@@ -17,5 +17,7 @@ namespace Bar_Management_System.Model.InvoiceManagement
         public int Empty { get; set; } = 0;
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
+        public int InvId { get; set; }
+        public Invoice Invoice { get; set; }
     }
 }

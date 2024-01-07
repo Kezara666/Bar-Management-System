@@ -10,6 +10,6 @@ namespace Bar_Management_System.Model.ProductManagement
 
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
-        public ICollection<Product> Products { get; set; }
+
     }
 }

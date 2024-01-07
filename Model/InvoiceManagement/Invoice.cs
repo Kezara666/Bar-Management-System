@@ -14,7 +14,6 @@ namespace Bar_Management_System.Model.InvoiceManagement
         public double TotalSellPrice { get; set; }
         public int TotalItemCount { get; set; }
 
-        public ICollection<SubUnitInvoce> SubInvoces { get; set; }
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
 

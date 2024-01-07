@@ -1,4 +1,5 @@
 ﻿using Data.Model;
+using Data.Model.BranchManagement;
 using Repos.IRepository;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,17 @@ using System.Threading.Tasks;
 
 namespace Repos
 {
-    public class UnitOfWork :IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly BMSContext _context;
+        public IGenericRepository<Branch> _branch;
         public UnitOfWork(BMSContext context)
         {
             _context = context;
         }
+
+        public IGenericRepository<Branch> Branch => _branch ??= new GenericRepository<Branch>(_context);
+
 
         public void Dispose()
         {

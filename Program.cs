@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authentication;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
+using Bar_Management_System.Configuration;
+using Bar_Management_System;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -10,7 +13,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Services.AddDbContext<BMSContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
     ));
-
+builder.Services.AddAutoMapper(typeof(MapperInitilizer));
+ServiceExtensions.ConfigureApplicationServices(builder.Services, builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
