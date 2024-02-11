@@ -56,7 +56,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoice", (string)null);
                 });
 
             modelBuilder.Entity("Bar_Management_System.Model.ProductManagement.Category", b =>
@@ -78,7 +78,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Bar_Management_System.Model.ProductManagement.Product", b =>
@@ -104,6 +104,9 @@ namespace Bar_Management_System.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("int");
 
+                    b.Property<double>("BuyerPrice")
+                        .HasColumnType("float");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -117,6 +120,9 @@ namespace Bar_Management_System.Migrations
                     b.Property<int>("ProductCode")
                         .HasColumnType("int");
 
+                    b.Property<double>("SellingPrice")
+                        .HasColumnType("float");
+
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
@@ -128,7 +134,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Bar_Management_System.Model.SupplierManagement.Supplier", b =>
@@ -161,7 +167,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("Data.Model.BranchManagement.Branch", b =>
@@ -186,7 +192,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("Data.Model.UserManagement.User", b =>
@@ -218,7 +224,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Data.Model.UserManagement.Window", b =>
@@ -235,7 +241,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasKey("WindowId");
 
-                    b.ToTable("Windows");
+                    b.ToTable("Windows", (string)null);
                 });
 
             modelBuilder.Entity("UserWindow", b =>
@@ -250,7 +256,7 @@ namespace Bar_Management_System.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("UserWindow");
+                    b.ToTable("UserWindow", (string)null);
                 });
 
             modelBuilder.Entity("Bar_Management_System.Model.InvoiceManagement.Invoice", b =>

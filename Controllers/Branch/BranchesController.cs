@@ -77,6 +77,31 @@ namespace Bar_Management_System.Controllers.Branch
             }
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetBranchById(int id)
+        {
+            try
+            {
+                var branch = await _unitOfWork.Branch.Get(x => x.Id == id);
+
+                if (branch == null)
+                {
+                    return NotFound($"Branch with ID {id} not found");
+                }
+
+                var result = _mapper.Map<BranchDTO>(branch);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error. Please Try Again Later. {ex}");
+            }
+        }
+
         [HttpPut("{Id}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

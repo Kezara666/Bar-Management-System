@@ -26,7 +26,7 @@ public class BMSContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=bar-management-sssystem.c7yka97oiaci.eu-north-1.rds.amazonaws.com;Database=BMS;User Id=admin;Password=admin123;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=172.212.81.114;Database=BMS;User Id=sa;Password=admin@123;TrustServerCertificate=True");
         }
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)

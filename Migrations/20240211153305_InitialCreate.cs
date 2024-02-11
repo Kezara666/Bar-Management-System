@@ -152,7 +152,9 @@ namespace Bar_Management_System.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     BranchId = table.Column<int>(type: "int", nullable: false),
-                    EmptyPrice = table.Column<double>(type: "float", nullable: false)
+                    EmptyPrice = table.Column<double>(type: "float", nullable: false),
+                    SellingPrice = table.Column<double>(type: "float", nullable: false),
+                    BuyerPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,45 +203,6 @@ namespace Bar_Management_System.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "SubUnitInvoce",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    Qnt = table.Column<int>(type: "int", nullable: false),
-                    Discount = table.Column<double>(type: "float", nullable: false),
-                    VAT = table.Column<double>(type: "float", nullable: false),
-                    TotalPurchasePrice = table.Column<double>(type: "float", nullable: false),
-                    TotalSellPrice = table.Column<double>(type: "float", nullable: false),
-                    NotRecived = table.Column<int>(type: "int", nullable: false),
-                    Empty = table.Column<int>(type: "int", nullable: false),
-                    BranchId = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubUnitInvoce", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SubUnitInvoce_Branches_BranchId",
-                        column: x => x.BranchId,
-                        principalTable: "Branches",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_SubUnitInvoce_Invoice_InvoiceId",
-                        column: x => x.InvoiceId,
-                        principalTable: "Invoice",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_SubUnitInvoce_Products_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_BranchId",
                 table: "Categories",
@@ -271,21 +234,6 @@ namespace Bar_Management_System.Migrations
                 column: "SupplierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubUnitInvoce_BranchId",
-                table: "SubUnitInvoce",
-                column: "BranchId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubUnitInvoce_InvoiceId",
-                table: "SubUnitInvoce",
-                column: "InvoiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SubUnitInvoce_ProductID",
-                table: "SubUnitInvoce",
-                column: "ProductID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Suppliers_BranchId",
                 table: "Suppliers",
                 column: "BranchId");
@@ -305,28 +253,25 @@ namespace Bar_Management_System.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SubUnitInvoce");
-
-            migrationBuilder.DropTable(
-                name: "UserWindow");
-
-            migrationBuilder.DropTable(
                 name: "Invoice");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Windows");
+                name: "UserWindow");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Windows");
 
             migrationBuilder.DropTable(
                 name: "Branches");

@@ -5,7 +5,7 @@
 namespace Bar_Management_System.Migrations
 {
     /// <inheritdoc />
-    public partial class null_suppliers_null_users_null_categories_null_products : Migration
+    public partial class KeyCategory : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
