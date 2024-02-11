@@ -30,8 +30,7 @@
   <ItemGroup>
     <Folder Include="Controllers\Invoice\" />
     <Folder Include="Controllers\User\" />
-    <Folder Include="Controllers\Suppliers\" />
-    <Folder Include="Controllers\Product\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
